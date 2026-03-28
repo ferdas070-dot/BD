@@ -1,1 +1,23 @@
+name: Run Python Downloader
 
+on:
+  workflow_dispatch:   # manual run button
+  push:                # runs when you push code
+
+jobs:
+  run-script:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y aria2 python3
+
+      - name: Run script
+        run: |
+          python3 your_script.py
